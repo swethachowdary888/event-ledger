@@ -1,20 +1,3 @@
-# Event Ledger
-
-Event Ledger is a distributed transaction-processing system built with two independently runnable Spring Boot microservices:
-
-- **Event Gateway** — public-facing API that validates and stores transaction events.
-- **Account Service** — internal service that manages account balances and transaction history.
-
-The services communicate synchronously over REST and use separate H2 databases.
-
-## Architecture
-
-```text
-Client
-  |
-  v
-Event Gateway :8080
-  |
-  | REST + X-Trace-Id
-  v
-Account Service :8081
+Event Ledger is a Spring Boot microservices project that processes account transactions. It consists of two services that work together to handle events and maintain account balances. The Event Gateway receives requests from clients, validates the incoming events, stores them, and forwards valid transactions to the Account Service. The Account Service processes CREDIT and DEBIT transactions, updates account balances, and maintains transaction history. The two services communicate synchronously using REST APIs, and each service has its own H2 database to keep them independent.
+Event Gateway — Receives client requests, validates events, stores them, and forwards valid transactions to the Account Service.
+Account Service — Processes CREDIT and DEBIT transactions, updates account balances, and maintains transaction history.
